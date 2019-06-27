@@ -19,6 +19,7 @@ import {JwtInterceptor, ErrorInterceptor} from './shared/helpers';
 import {HomeComponent} from './layouts/home';
 import {LoginComponent} from './layouts/login';
 import {ProductResolver, ProductFormComponent, ProductListComponent, ProductDeleteDialogComponent} from './layouts/product';
+import {ClientDeleteDialogComponent, ClientFormComponent, ClientListComponent, ClientResolver} from './layouts/client';
 
 @NgModule({
   imports: [
@@ -43,12 +44,17 @@ import {ProductResolver, ProductFormComponent, ProductListComponent, ProductDele
     ProductListComponent,
     ProductFormComponent,
     ProductDeleteDialogComponent,
+    ClientListComponent,
+    ClientFormComponent,
+    ClientDeleteDialogComponent,
   ],
-  entryComponents: [ProductListComponent, ProductFormComponent, ProductDeleteDialogComponent],
+  entryComponents: [ProductListComponent, ProductFormComponent, ProductDeleteDialogComponent,
+    ClientListComponent, ClientFormComponent, ClientDeleteDialogComponent],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     ProductResolver,
+    ClientResolver,
   ],
   bootstrap: [AppComponent],
 })

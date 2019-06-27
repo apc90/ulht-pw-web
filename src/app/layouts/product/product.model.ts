@@ -5,6 +5,8 @@ export interface IProduct {
   productName?: string;
   productCode?: string;
   desription?: string;
+  price?: number;
+  quantity?: number;
   expireDate?: Moment;
   brand?: string;
   productPrecautions?: IProductPrecautions[];
@@ -16,6 +18,8 @@ export class Product implements IProduct {
     public productName?: string,
     public productCode?: string,
     public desription?: string,
+    public price?: number,
+    public quantity?: number,
     public expireDate?: Moment,
     public brand?: string,
     public productPrecautions?: IProductPrecautions[]
