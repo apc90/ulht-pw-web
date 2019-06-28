@@ -10,7 +10,7 @@ export class ClientResolver implements Resolve<IClient> {
   constructor(private service: ClientService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IClient> {
-    const id = route.params.id ? route.params.id : null;
+    const id = route.params['id'] ? route.params['id'] : null;
     if (id) {
       return this.service.findById(id).pipe(map(client => client));
     }

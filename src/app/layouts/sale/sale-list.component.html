@@ -1,0 +1,47 @@
+<div>
+  <h2 id="sales-page-heading">
+    <span>Vendas</span>
+    <button id="new-sales-btn" class="btn btn-primary float-right" [routerLink]="['/sales/new']">
+      <fa-icon [icon]="'plus'"></fa-icon>
+      <span>
+            Nova Venda
+          </span>
+    </button>
+  </h2>
+  <br/>
+  <div class="table-responsive" *ngIf="sales">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th><span>ID</span></th>
+        <th><span>Cliente</span></th>
+        <th><span>Quantidade</span></th>
+        <th><span>Total</span></th>
+        <th><span>Data</span></th>
+        <th><span>Farmaceutico</span></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let sale of sales | orderBy : ['id']; trackBy: trackId">
+        <td>{{sale.id}}</td>
+        <td>{{sale.client.firstName}} {{sale.client.lastName}}</td>
+        <td>{{sale.quantity}}</td>
+        <td>{{sale.total}}</td>
+        <td>{{sale.dateOfCreation}}</td>
+        <td>{{sale.user.firstName}} {{sale.user.lastName}}</td>
+        <td class="text-right">
+          <div class="btn-group flex-btn-group-container">
+            <button type="submit"
+                    [routerLink]="['/sales', sale.id, 'edit']"
+                    class="btn btn-primary btn-sm">
+              <fa-icon [icon]="'pencil-alt'"></fa-icon>
+              <span class="d-none d-md-inline"> Editar</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

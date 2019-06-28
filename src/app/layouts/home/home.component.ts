@@ -9,7 +9,6 @@ export class HomeComponent {
   users: User[] = [];
 
   constructor(private userService: UserService) {}
-
   ngOnInit() {
     this.userService
       .getAll()

@@ -50,7 +50,7 @@
     <div class="col-md-3">
       <div class="form-group">
         <label class="form-control-label" for="productPriceInput">Preço</label>
-        <input type="text" value="{{product.price| number :'1.2-2'}}" class="form-control" name="productPriceInput" id="productPriceInput" [(ngModel)]="product.price" placeholder="Preço" required/>
+        <input type="text" value="{{product.price| number :'3.2-2'}}" class="form-control" name="productPriceInput" id="productPriceInput" [(ngModel)]="product.price" placeholder="Preço" required/>
         <div [hidden]="!(editForm.controls.productPriceInput?.dirty && editForm.controls.productPriceInput?.invalid)">
           <small class="form-text text-danger" [hidden]="!editForm.controls.productPriceInput?.errors?.required">
             Campo obrigatório.

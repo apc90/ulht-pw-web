@@ -1,16 +1,19 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Subject} from 'rxjs';
+import {ActivatedRoute, ActivationStart, NavigationEnd, Router} from '@angular/router';
+import {Observable, Subject} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 import {isNullOrUndefined} from 'util';
-import {FormBuilder} from '@angular/forms';
 import {ClientService} from './client.service';
 import {Address, Contact, IAddress, IClient, IContact} from './client.model';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {IProduct, IProductPrecautions, ProductPrecautions} from '@/layouts/product/product.model';
+import {ProductService} from '@/layouts/product';
 
 @Component({
   selector: 'app-client-form',
   templateUrl: './client-form.component.html',
   styleUrls: ['./client.scss'],
+  providers: [ClientService],
 })
 export class ClientFormComponent implements OnInit, OnDestroy {
   public client: IClient;
@@ -30,10 +33,6 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   }
 
   public saveClient(): void {
-    console.log('ID', this.client.id);
-    console.log('First name', this.client.firstName);
-    console.log('Last name', this.client.lastName);
-
     if (this.client.id === undefined) {
       this.clientService.create(this.client).subscribe(
         res => {
@@ -90,5 +89,4 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   private throwError(): void {
     this.toastr.error('An error occurred on the system. Please contact the system administrator ', 'Error');
   }
-
 }

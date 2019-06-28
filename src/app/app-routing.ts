@@ -5,7 +5,8 @@ import {HomeComponent} from './layouts/home';
 import {LoginComponent} from './layouts/login';
 import {ProductFormComponent, ProductListComponent, ProductResolver} from './layouts/product';
 import {AuthGuard} from './shared/guards';
-import {ClientDeleteDialogComponent, ClientFormComponent, ClientListComponent, ClientResolver} from '@/layouts/client';
+import {ClientFormComponent, ClientListComponent, ClientResolver} from './layouts/client';
+import {SaleFormComponent, SaleListComponent, SaleResolver} from '@/layouts/sale';
 
 const routes: Routes = [
   {
@@ -49,7 +50,7 @@ const clientRoutes: Routes = [
     component: ClientFormComponent,
     canActivate: [AuthGuard],
     resolve: {
-      product: ClientResolver,
+      client: ClientResolver,
     },
   },
   {
@@ -57,7 +58,7 @@ const clientRoutes: Routes = [
     component: ClientFormComponent,
     canActivate: [AuthGuard],
     resolve: {
-      product: ClientResolver,
+      client: ClientResolver,
     },
   },
   {
@@ -65,12 +66,30 @@ const clientRoutes: Routes = [
     component: ClientListComponent,
     canActivate: [AuthGuard],
   },
+];
+
+const salesRoutes: Routes = [
   {
-    path: 'client-delete-dialog',
-    component: ClientDeleteDialogComponent,
+    path: 'sales/new',
+    component: SaleFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      sale: SaleResolver,
+    },
+  },
+  {
+    path: 'sales/:id/edit',
+    component: SaleFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      sale: SaleResolver,
+    },
+  },
+  {
+    path: 'sale-list',
+    component: SaleListComponent,
     canActivate: [AuthGuard],
   },
-
 ];
 
 const otherRoutes: Routes = [
@@ -78,7 +97,7 @@ const otherRoutes: Routes = [
   {path: '**', redirectTo: ''},
 ];
 
-const ENTITY_STATES = [...routes, ...productRoutes, ...clientRoutes];
+const ENTITY_STATES = [...routes, ...productRoutes, ...clientRoutes, ...salesRoutes];
 
 @NgModule({
   imports: [RouterModule.forRoot(ENTITY_STATES)],

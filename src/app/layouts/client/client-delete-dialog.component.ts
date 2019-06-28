@@ -18,7 +18,8 @@ export class ClientDeleteDialogComponent {
     this.activeModal.dismiss('cancel');
   }
 
-  public clientConfirmDelete(id: number) {
+  public confirmDelete(id: number) {
+    console.log("delete client", id);
     this.clientService.delete(id).subscribe(
       response => {
         this.saveSucess();

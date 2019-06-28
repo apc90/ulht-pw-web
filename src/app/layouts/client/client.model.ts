@@ -26,8 +26,8 @@ export class Client implements IClient {
 }
 
 export const enum ContactType {
-  TELEFONE = 'Telefone',
-  TELEMOVEL = 'Telemóvel',
+  PHONE = 'Telefone',
+  MOBILE = 'Telemóvel',
   EMAIL = 'E-mail',
 }
 
