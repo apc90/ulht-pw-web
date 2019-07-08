@@ -32,7 +32,7 @@
         <td>{{product.desription}}</td>
         <td>{{product.expireDate | date:'medium'}}</td>
         <td>{{product.brand}}</td>
-        <td>{{product.price}}</td>
+        <td type="number" ng-model="amount">{{product.price | currency:"€"}}</td>
         <td>{{product.quantity}}</td>
         <td class="text-right">
           <div class="btn-group flex-btn-group-container">

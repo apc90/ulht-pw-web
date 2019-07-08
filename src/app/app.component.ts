@@ -15,6 +15,7 @@ export class AppComponent {
   title = 'my-dream-app';
 
   control = new FormControl(null, dummyValidator);
+  dataset = ['MDB', 'Angular', 'Bootstrap', 'Framework', 'SPA', 'React', 'Vue'];
 
   constructor(private router: Router, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => (this.currentUser = x));

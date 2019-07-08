@@ -21,7 +21,8 @@ import {HomeComponent} from './layouts/home';
 import {LoginComponent} from './layouts/login';
 import {ProductResolver, ProductFormComponent, ProductListComponent, ProductDeleteDialogComponent} from './layouts/product';
 import {ClientDeleteDialogComponent, ClientFormComponent, ClientListComponent, ClientResolver} from './layouts/client';
-import {SaleFormComponent, SaleListComponent, SaleResolver} from '@/layouts/sale';
+import {SaleFormComponent, SaleListComponent, SaleResolver} from './layouts/sale';
+import {SaleShowDialogComponent} from './layouts/sale/sale-show-dialog.component';
 
 
 @NgModule({
@@ -53,9 +54,10 @@ import {SaleFormComponent, SaleListComponent, SaleResolver} from '@/layouts/sale
     ClientDeleteDialogComponent,
     SaleListComponent,
     SaleFormComponent,
+    SaleShowDialogComponent,
   ],
   entryComponents: [ProductListComponent, ProductFormComponent, ProductDeleteDialogComponent,
-    ClientListComponent, ClientFormComponent, ClientDeleteDialogComponent, SaleListComponent, SaleFormComponent],
+    ClientListComponent, ClientFormComponent, ClientDeleteDialogComponent, SaleListComponent, SaleFormComponent, SaleShowDialogComponent],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

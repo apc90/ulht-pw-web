@@ -1,0 +1,39 @@
+<form name="showForm">
+  <div class="modal-header">
+    <h4 class="modal-title">Detalhes da venda</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            (click)="clear()">&times;</button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <thead>
+        <ul>
+          <b>{{sale.client.nif}} - {{sale.client.firstName}} {{sale.client.lastName}}</b>
+        </ul>
+          <tr>
+            <th><span>Medicamento</span></th>
+            <th><span>Preço</span></th>
+            <th><span>Quantidade</span></th>
+            <th><span>Sub-Total</span></th>
+          </tr>
+          <tr *ngFor="let product of sale.products | orderBy : ['id']; trackBy: trackId">
+            <td>{{product.productName}}</td>
+            <td>{{product.price}}</td>
+            <td>{{sale.quantity}}</td>
+            <td type="number" ng-model="amount">{{saleProduct(product.price, sale.quantity) | currency:"€"}}</td>
+          </tr>
+      </thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th><b class="text-right">TOTAL</b></th>
+        <th type="number" ng-model="amount">{{sale.total| currency:"€"}}</th>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+      <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancelar</span>
+    </button>
+  </div>
+</form>

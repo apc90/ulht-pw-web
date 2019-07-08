@@ -72,4 +72,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   private throwError(): void {
     this.toastr.error('An error occurred on the system. Please contact the system administrator ', 'Error');
   }
+
+
+  public onChangeNumberPrice() : void {
+      function setTwoNumberDecimal(event) {
+        this.value = parseFloat(this.value).toFixed(2);
+      }
+  }
 }

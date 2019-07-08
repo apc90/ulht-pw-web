@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, PipeTransform, Pipe} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subject} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
@@ -7,12 +7,17 @@ import {SaleService} from './sale.service';
 import {ISale} from './sale.model';
 import {IClient} from '@/layouts/client/client.model';
 
+
+@Pipe({
+  name: 'filter'
+})
+
 @Component({
   selector: 'app-sale-form',
   templateUrl: './sale-form.component.html',
   styleUrls: ['./sale.scss'],
 })
-export class SaleFormComponent implements OnInit, OnDestroy {
+export class SaleFormComponent implements OnInit, OnDestroy, PipeTransform {
   public sale: ISale;
   private unsubscribe: Subject<void> = new Subject<void>();
 
@@ -29,6 +34,20 @@ export class SaleFormComponent implements OnInit, OnDestroy {
     this.unsubscribe.complete();
   }
 
+  transform(items: any[], searchText: string): any[] {
+
+    if (!items) {
+      return [];
+    }
+    if (!searchText) {
+      return items;
+    }
+    searchText = searchText.toLocaleLowerCase();
+
+    return items.filter(it => {
+      return it.toLocaleLowerCase().includes(searchText);
+    });
+  }
   public saveProduct(): void {
     if (this.sale.id === undefined) {
       this.saleService.create(this.sale).subscribe(
@@ -57,9 +76,13 @@ export class SaleFormComponent implements OnInit, OnDestroy {
     this.sale.client = client;
   }
 
+  public changeClient(client: IClient): void {
+
+  }
+
   /*
-  public deleteClientContact(contact: IContact): void {
-    const index = this.client.contacts.indexOf(contact);
+  public deleteClientFromSale(client: IClient): void {
+    const index = this.sale.client.indexOf(contact);
     this.client.contacts.splice(index, 1);
   }
 */

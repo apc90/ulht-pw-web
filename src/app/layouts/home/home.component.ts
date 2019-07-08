@@ -9,6 +9,7 @@ export class HomeComponent {
   users: User[] = [];
 
   constructor(private userService: UserService) {}
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
     this.userService
       .getAll()

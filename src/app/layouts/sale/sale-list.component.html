@@ -27,16 +27,13 @@
         <td>{{sale.id}}</td>
         <td>{{sale.client.firstName}} {{sale.client.lastName}}</td>
         <td>{{sale.quantity}}</td>
-        <td>{{sale.total}}</td>
-        <td>{{sale.dateOfCreation}}</td>
+        <td type="number" ng-model="amount">{{sale.total | currency:"€"}}</td>
+        <td>{{sale.createdDate | date:'dd-MM-yyyy H:m:s'}}</td>
         <td>{{sale.user.firstName}} {{sale.user.lastName}}</td>
         <td class="text-right">
           <div class="btn-group flex-btn-group-container">
-            <button type="submit"
-                    [routerLink]="['/sales', sale.id, 'edit']"
-                    class="btn btn-primary btn-sm">
-              <fa-icon [icon]="'pencil-alt'"></fa-icon>
-              <span class="d-none d-md-inline"> Editar</span>
+            <button type="button" (click)="clientShowSales(sale)" class="btn btn-info">
+              <span class="d-none d-md-inline">Consultar</span>
             </button>
           </div>
         </td>
